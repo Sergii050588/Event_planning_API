@@ -12,6 +12,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'
 gem 'client_side_validations'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 gem 'jquery-rails'
 gem 'turbolinks'

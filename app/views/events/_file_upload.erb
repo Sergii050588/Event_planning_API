@@ -1,0 +1,11 @@
+<% if @event.files != nil %>
+  <% @event.files.each do |file| %>
+    <%= link_to File.basename(file.path), file.url %>
+  <% end %>
+<% end %>
+
+<%= form_for @event, html: { multipart: true } do |file| %>
+  <p><%= file.file_field :files, multiple: true %></p>
+  <p><%= file.submit "Upload file to event" %></p>
+<% end %>
+  

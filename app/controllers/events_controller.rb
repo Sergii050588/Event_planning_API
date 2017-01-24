@@ -1,12 +1,13 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :if_current_user
+  before_action :if_current_user, except: :show
 
   def index
     @events = Event.all
   end
 
   def show
+    redirect_to root_path unless current_user.id == @event.user_id
   end
 
   def new
@@ -58,13 +59,10 @@ class EventsController < ApplicationController
     end
 
     def event_params
-     params.require(:event).permit(:name, :place, :purpose, :date_time, :max_visitors_number, user_ids: [])
+     params.require(:event).permit(:name, :place, :purpose, :date_time, :max_visitors_number, user_ids: [], files: [])
     end
 
     def if_current_user
-    if !current_user
-      flash[:alarm] = "Please login"
-      redirect_to root_path
+      redirect_to root_path unless current_user
     end
-  end
 end
