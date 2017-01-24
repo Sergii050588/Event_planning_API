@@ -1,0 +1,6 @@
+<%= form_for Comment.new, url: event_comments_path(@event.id) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :note, class: "form-control", placeholder: "Додати коментар" %>
+  </div>
+  <%= f.submit 'Додати коментар' %>
+<% end %>

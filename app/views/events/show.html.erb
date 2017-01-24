@@ -1,4 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<table>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    <h3><en> <%="#{@event.name}"%> info: </en></h3>
+  </div>
+</div>
+
+<tr>
+    <th>Event name: </th>
+    <th>Event place: </th>
+    <th>Purpose: </th>
+    <th>Event date: </th>
+    <th>Max visitors: </th>
+    <th>Event visitors: </th>
+    <th>Actions: </th>
+  </tr>
+
+      <tr>
+        <td><%= @event.name %></td>
+        <td><%= @event.place %><br>
+        <td><%= @event.purpose %></td>
+        <td><%= @event.date_time %></td>
+        <td><%= @event.max_visitors_number %></td>
+        <td>
+          <% @event.users.each do |h| %>
+          <%= h.name %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Edit', edit_event_path(@event) %>
+        <%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+</table>
+
+<%= render 'comments/comment_form', commentable: @event %>
+<%= render 'comments/event_post_form', commentable: @event %>
+
+</body>

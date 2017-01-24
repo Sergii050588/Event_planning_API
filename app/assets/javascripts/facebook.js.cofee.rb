@@ -8,7 +8,7 @@ jQuery ->
 
 
 window.fbAsyncInit = ->
-  FB.init(appId: '<%= ENV["FACEBOOK_APP_ID"] %>', cookie: true)
+  FB.init(appId: '<%= ENV["FACEBOOK_APP_ID"] %>')
 
   $('#sign_in').click (e) ->
     e.preventDefault()
