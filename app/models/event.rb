@@ -10,13 +10,14 @@ class Event < ActiveRecord::Base
   belongs_to :owner, class_name: "User", foreign_key: :user_id
   accepts_nested_attributes_for :users
   has_many :comments, class_name: "Comment"
+  has_many :file_attachments
 
-  mount_uploaders :files, EventFileUploader
+  accepts_nested_attributes_for :file_attachments
+
 
   def event_date_cant_be_in_past
     if date_time.present? && date_time < Date.today
       errors.add(:date_time, "can't be in the past")
     end
   end
-
 end

@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
 
   def create
+    @event = Event.find(params[:id])
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    @event = Event.find(params[:id])
     @comment.event_id = @event.id
     if @comment.save
       redirect_to :back, notice: "You add a comment"

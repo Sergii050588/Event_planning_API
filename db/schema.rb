@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124172810) do
+ActiveRecord::Schema.define(version: 20170125092742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20170124172810) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "user_id"
-    t.json     "files"
   end
 
   create_table "events_users", id: false, force: :cascade do |t|
@@ -43,6 +42,13 @@ ActiveRecord::Schema.define(version: 20170124172810) do
 
   add_index "events_users", ["event_id"], name: "index_events_users_on_event_id", using: :btree
   add_index "events_users", ["user_id"], name: "index_events_users_on_user_id", using: :btree
+
+  create_table "file_attachments", force: :cascade do |t|
+    t.string   "file"
+    t.string   "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"

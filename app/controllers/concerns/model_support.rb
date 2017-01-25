@@ -12,5 +12,4 @@ module ModelSupport
     random_string = ('a'..'z').to_a.shuffle[0,8].join
     self.id = Digest::MD5.hexdigest(DateTime.now.to_s + random_string)
   end
-
 end

@@ -1,11 +1,12 @@
-<% if @event.files != nil %>
-  <% @event.files.each do |file| %>
-    <%= link_to File.basename(file.path), file.url %>
+<% @event.file_attachments.each do |file| %>
+<% if file.file.present? %>
+    <%= link_to File.basename(file.file.path), file.file.url %></br>
   <% end %>
 <% end %>
 
-<%= form_for @event, html: { multipart: true } do |file| %>
-  <p><%= file.file_field :files, multiple: true %></p>
-  <p><%= file.submit "Upload file to event" %></p>
+<%= form_for @event, html: { multipart: true } do |event| %>
+  <%= event.fields_for :file_attachments, @event.file_attachments.build do |file| %>
+    <p><%= file.file_field :file %></p>
+    <p><%= file.submit "Upload file to event" %></p>
+  <% end %>
 <% end %>
-  

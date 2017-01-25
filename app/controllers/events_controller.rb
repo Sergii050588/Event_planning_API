@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    redirect_to root_path unless current_user.id == @event.user_id
   end
 
   def new
@@ -35,6 +34,7 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
+      # binding.pry
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
@@ -54,15 +54,17 @@ class EventsController < ApplicationController
   end
 
   private
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    def event_params
-     params.require(:event).permit(:name, :place, :purpose, :date_time, :max_visitors_number, user_ids: [], files: [])
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def if_current_user
-      redirect_to root_path unless current_user
-    end
+  def event_params
+   params.require(:event).permit(:name, :place, :purpose, :date_time, :max_visitors_number,
+   user_ids: [],  file_attachments_attributes: [:id, :file, :file_cache])
+  end
+
+  def if_current_user
+    redirect_to root_path unless current_user
+  end
 end

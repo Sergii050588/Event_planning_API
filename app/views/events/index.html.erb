@@ -24,7 +24,7 @@
         <td><%= event.purpose %><br>
         <td><%= event.date_time %><br>
         <td><%= event.max_visitors_number %><br>
-        <% if current_user.id == event.user_id %>
+        <% if current_user.id == event.user_id || following_event?(event.id) %>
           <td><%= link_to 'Show', event %></td>
         <% end %>
       </tr>
