@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   match 'auth/failure',via: [:get], to: redirect('/')
   match 'signout', via: [:get], to: 'sessions#destroy', as: 'signout'
 
-  namespace :api, defaults: { format: 'json'} do
+  namespace :api do
     get 'events?interval=(:number)' => 'events#index'
     get 'feed' => 'events#feed'
     resources :events
