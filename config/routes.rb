@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json'} do
     get 'events?interval=(:number)' => 'events#index'
+    get 'feed' => 'events#feed'
     resources :events
   end
 
