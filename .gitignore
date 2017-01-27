@@ -12,3 +12,7 @@
 !/log/.keep
 /tmp
 /public/uploads/*
+/zeus.json
+/custom_plan.rb
+/spec
+/.rspec

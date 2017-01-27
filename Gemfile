@@ -24,8 +24,14 @@ group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem 'pry-rails'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 2.7.0'
+  #Strategies for cleaning databases. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner'
 end
 
 group :production do

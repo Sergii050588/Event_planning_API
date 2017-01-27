@@ -1,29 +1,26 @@
 <%= form_for(@event) do |event| %>
 
-<%= event.label :name, "Event name"  %>
-      <%= event.text_field :name %>
+  <%= event.label :name, "Event name"  %>
+  <%= event.text_field :name %>
 
-      <%= event.label :place, "Place for event"  %>
-      <%= event.text_field :place %>
+  <%= event.label :place, "Place for event"  %>
+  <%= event.text_field :place %>
 
-      <%= event.label :date_time, "Event starts at"  %>
-      <%= event.datetime_select :date_time, prompt: true, :minute_step => 5, start_year: 2017, end_year: 2025 %>
+  <%= event.label :date_time, "Event starts at"  %>
+  <%= event.datetime_select :date_time, prompt: true, :minute_step => 5, start_year: 2017, end_year: 2025 %>
 
-      <%= event.label :purpose, "Purpose of event"  %>
-      <%= event.text_field :purpose %>
+  <%= event.label :purpose, "Purpose of event"  %>
+  <%= event.text_field :purpose %>
 
-      <%= event.label :max_visitors_number, "Max. visitors of event"  %>
-      <%= event.number_field :max_visitors_number %>
+  <%= event.label :max_visitors_number, "Max. visitors of event"  %>
+  <%= event.number_field :max_visitors_number %>
 
-       <div><label>Visitors</label></div>
-            <%= event.collection_check_boxes(:user_ids, User.all, :id, :name) %>
-            
+  <div><label>Visitors</label></div>
+  <%= event.collection_check_boxes(:user_ids, User.all, :id, :name) %>
 
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      
 
       <ul>
       <% @event.errors.full_messages.each do |message| %>
